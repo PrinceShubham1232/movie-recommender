@@ -1,4 +1,6 @@
 import pickle
+
+import pandas as pd
 import streamlit as st
 import requests
 
@@ -36,8 +38,10 @@ def recommend(movie):
     return recommended_movies_name, recommended_movies_poster, recommended_movies_urls
 
 
-movies = pickle.load(open('movies.pkl', 'rb'))
-similarity = pickle.load(open('similarity.pkl', 'rb'))
+with open('movies.pkl', 'rb') as f:
+    movies = pd.read_pickle(f)
+with open('similarity.pkl', 'rb') as f:
+    similarity = pd.read_pickle(f)
 
 st.title('World of Movies')
 
